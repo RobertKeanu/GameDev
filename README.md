@@ -5,8 +5,8 @@ Jucatorul trebuie sa treaca de anumite challenge-uri pe parcursul nivelelor util
                 - Folosind mecanicile de movement disponibile jucatorului
 
 # Membrii Echipei 
-[Lefter Andrei](https://github.com/andlft)
-[Potanga Alexandru](https://github.com/Destro25)
-[Putinelu Bogdan](https://github.com/bogdanputinelu)
-[Balanica Andrei](https://github.com/Balanica)
-[Rosianu Robert](https://github.com/RobertKeanu)
+-[Lefter Andrei](https://github.com/andlft)
+-[Potanga Alexandru](https://github.com/Destro25)
+-[Putinelu Bogdan](https://github.com/bogdanputinelu)
+-[Balanica Andrei](https://github.com/Balanica)
+-[Rosianu Robert](https://github.com/RobertKeanu)
