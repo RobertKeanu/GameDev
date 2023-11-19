@@ -84,10 +84,10 @@ public class MovementScript : MonoBehaviour
     private void MovePlayer()
     {
         _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
-        _wallFront = Physics.Raycast(transform.position, orientation.forward,  playerHeight + 2.0f);
-        _wallFront2 = Physics.Raycast(transform.position, Vector3.back,  playerHeight + 2.0f);
-        _wallFront3 = Physics.Raycast(transform.position, Vector3.right,  playerHeight + 2.0f);
-        _wallFront4 = Physics.Raycast(transform.position, Vector3.left,  playerHeight + 2.0f);
+        _wallFront = Physics.Raycast(transform.position, orientation.forward,  playerHeight);
+        _wallFront2 = Physics.Raycast(transform.position, Vector3.back,  playerHeight);
+        _wallFront3 = Physics.Raycast(transform.position, Vector3.right,  playerHeight);
+        _wallFront4 = Physics.Raycast(transform.position, Vector3.left,  playerHeight);
 
         if(_grounded) 
             _rigidbody.AddForce(_moveDirection.normalized * speed * 10f, ForceMode.Force);
