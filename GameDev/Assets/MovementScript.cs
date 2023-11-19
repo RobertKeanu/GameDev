@@ -51,13 +51,9 @@ public class MovementScript : MonoBehaviour
     }
     private void Update()
     {
-        //_grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f);
-        //_boxCollider = GameObject.Find("PlayerObject").GetComponent<BoxCollider>();
-        //Debug.Log(_boxCollider);
         //grounded will return true if the raycast finds the collider of the ground (we check that by using the layermask created)
         PlInput();
         SpeedControl();
-        //Debug.Log(_grounded);
         if (_grounded)
         {
             _rigidbody.drag = groundDrag;
@@ -72,8 +68,6 @@ public class MovementScript : MonoBehaviour
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
-        //Debug.Log(readyToJump);
-        //readyToJump = true;
         if (Input.GetKey(jumpKey) && _grounded && readyToJump)
         {
             readyToJump = false;
@@ -96,14 +90,13 @@ public class MovementScript : MonoBehaviour
         _wallFront2 = Physics.Raycast(transform.position, Vector3.back,  playerHeight + 2.0f);
         _wallFront3 = Physics.Raycast(transform.position, Vector3.right,  playerHeight + 2.0f);
         _wallFront4 = Physics.Raycast(transform.position, Vector3.left,  playerHeight + 2.0f);
-        //Debug.DrawRay(transform.position, orientation.forward, Color.blue);
+
         if(_grounded) 
             _rigidbody.AddForce(_moveDirection.normalized * speed * 10f, ForceMode.Force);
         //We check if the player is on the ground and we apply a continuous force to the game object 
         else if (!_grounded)
         {
-            //Debug.DrawRay(transform.position, orientation.forward);
-            //Debug.Log(_wallFront);
+
             if (_wallFront && _wallFront2 && _wallFront3 && _wallFront4)
             {
                 _rigidbody.AddForce(_moveDirection.normalized*speed*10f*0, ForceMode.Force);
