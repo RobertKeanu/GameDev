@@ -42,12 +42,10 @@ public class MovementScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
             _grounded = true;
-            Debug.Log("grounded");
     }
     private void OnTriggerExit(Collider other)
     {
             _grounded = false;
-            Debug.Log("not grounded");
     }
     private void Update()
     {
