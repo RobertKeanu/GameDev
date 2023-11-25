@@ -31,11 +31,15 @@ public class MovementScript : MonoBehaviour
         //In the start function we are getting a reference to the rigidbody component attached to the game object
         //We are setting the freezeRotation variable to true so that the player cannot rotate while moving
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-            _grounded = true;
+        _grounded = true;
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        _grounded = false;
+    }
     private void Update()
     {
         //grounded will return true if the raycast finds the collider of the ground (we check that by using the layermask created)
@@ -95,7 +99,6 @@ public class MovementScript : MonoBehaviour
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
         //We reset the velocity for y axis so that the jump is consistent and always jump the same height
         _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        _grounded = false;
         //We apply the force in the upward direction using the forcemode.impulse so that the force is applied only once
     }
 
