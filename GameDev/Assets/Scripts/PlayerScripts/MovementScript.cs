@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
-    [Header("Movement")] public float speed;
+    [Header("Movement")] private float _speed;
+
+    public float walkSpeed;
+
+    public float sprintSpeed;
     //Variables for setting the speed of the player/drag when the player is on the ground
     public float groundDrag;
 
@@ -14,6 +18,7 @@ public class MovementScript : MonoBehaviour
 
     private float _horizontalInput;
     [Header("Keybinds")] public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -23,6 +28,14 @@ public class MovementScript : MonoBehaviour
     private BoxCollider _boxCollider;
     private Vector3 _moveDirection;
     private Rigidbody _rigidbody;
+    private MovementState _state;
+
+    public enum MovementState
+    {
+        Walking,
+        Running,
+        Air
+    }
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -45,6 +58,7 @@ public class MovementScript : MonoBehaviour
         //grounded will return true if the raycast finds the collider of the ground (we check that by using the layermask created)
         PlInput();
         SpeedControl();
+        StateHandler();
         if (_grounded)
         {
             _rigidbody.drag = groundDrag;
@@ -54,7 +68,25 @@ public class MovementScript : MonoBehaviour
             _rigidbody.drag = 0;
         }
         //We use drag to slow down the movement of the player while on the ground
-    }   
+    }
+
+    private void StateHandler()
+    {
+        if (_grounded && Input.GetKey(sprintKey))
+        {
+            _state = MovementState.Running;
+            _speed = sprintSpeed;
+        }
+        else if (_grounded)
+        {
+            _state = MovementState.Walking;
+            _speed = walkSpeed;
+        }
+        else
+        {
+            _state = MovementState.Air;
+        }
+    }
     private void PlInput()
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -63,7 +95,7 @@ public class MovementScript : MonoBehaviour
         {
             readyToJump = false;
             Jump();
-            Invoke(nameof(ResetJump) , jumpCooldown);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
         //We check if the space button was pressed, if the player is on the ground and if the player can jump and based
         //on that we set the variable to false and we reset it after the cooldown of the jump is over
@@ -77,20 +109,21 @@ public class MovementScript : MonoBehaviour
     {
         _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
 
-        if(_grounded)
-            _rigidbody.AddForce(_moveDirection.normalized * speed * 10f, ForceMode.Force);
+        if (_grounded)
+            _rigidbody.AddForce(_moveDirection.normalized * _speed * 10f, ForceMode.Force);
         else
         {
-            _rigidbody.AddForce(_moveDirection.normalized * speed * 10f * airMultiplier, ForceMode.Force);
+            _rigidbody.AddForce(_moveDirection.normalized * _speed * 10f * airMultiplier, ForceMode.Force);
         }
     }
 
     private void SpeedControl()
     {
         Vector3 flatLevel = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
-        if (flatLevel.magnitude > speed) {
+        if (flatLevel.magnitude > _speed)
+        {
             //If the player's speed exceeds the limit, set it to the maximum speed.
-            _rigidbody.velocity = new Vector3(flatLevel.normalized.x * speed, _rigidbody.velocity.y, flatLevel.normalized.z * speed);
+            _rigidbody.velocity = new Vector3(flatLevel.normalized.x * _speed, _rigidbody.velocity.y, flatLevel.normalized.z * _speed);
         }
     }
 
