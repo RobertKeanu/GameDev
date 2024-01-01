@@ -20,4 +20,17 @@ public class GameRespawn : MonoBehaviour
             transform.position = lastCheckpoint;
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            KillFunction();
+        }
+    }
+
+    void KillFunction()
+    {
+        transform.position = lastCheckpoint;
+    }
 }
