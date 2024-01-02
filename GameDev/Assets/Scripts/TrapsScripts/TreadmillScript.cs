@@ -18,7 +18,6 @@ public class TreadmillScript : MonoBehaviour
     private Transform _planePrefab = null;
     [SerializeField]
     private float speed = 1.0f;
-    private float initSpeed = 1.0f;
     private float _spawnTime = 3.0f;
     private List<Transform> ObstacleList = new List<Transform>();
     private List<Transform> PlaneList = new List<Transform>();
@@ -34,9 +33,9 @@ public class TreadmillScript : MonoBehaviour
     {
         speed = 3 * length;
         _spawnTime = 4.5f / speed;
-        var globalx = transform.position.x;
-        var globaly = transform.position.y;
-        var globalz = transform.position.z;
+        var globalx = transform.localPosition.x;
+        var globaly = transform.localPosition.y;
+        var globalz = transform.localPosition.z;
         var planexOriginal = planex;
         cylinderx = globalx + cylinderx * length;
         wallx = globalx + wallx * length;
@@ -51,25 +50,24 @@ public class TreadmillScript : MonoBehaviour
         cylinderz = globalz + cylinderz;
 
         var planeDown = Instantiate(_cubePrefabs[3]);
-        planeDown.position = new Vector3(globalx - 14.33f, globaly - 1.61f, globalz);
+        planeDown.localPosition = new Vector3(globalx - 14.33f, globaly - 1.61f, globalz);
         var planeUp = Instantiate(_cubePrefabs[4]);
-        planeUp.position = new Vector3(planex - 10.04f, planey - 0.87f, globalz);
+        planeUp.localPosition = new Vector3(planex - 10.04f, planey - 0.87f, globalz);
 
         var planeUp2 = Instantiate(_cubePrefabs[5]);
-        planeUp2.position = new Vector3(planex + 6.04f, planey + 4.35f, globalz);
+        planeUp2.localPosition = new Vector3(planex + 6.04f, planey + 4.35f, globalz);
         StartCoroutine(SpawnObstacles());
     }
 
     private IEnumerator SpawnObstacles()
     {
-        var globalx = transform.position.x;
-        var globaly = transform.position.y;
-        var globalz = transform.position.z;
+        var globalx = transform.localPosition.x;
+        var globaly = transform.localPosition.y;
+        var globalz = transform.localPosition.z;
         while (true)
         {
             int cntWall = 1;
             var nrPrefab = Random.Range(0, 3);
-            Debug.Log(nrPrefab);
             //wall creation
             if (nrPrefab == 1)
             {
@@ -92,7 +90,7 @@ public class TreadmillScript : MonoBehaviour
                     var obstacle = Instantiate(_cubePrefabs[nrPrefab]);
                     obstacle.AddComponent<Rigidbody>().GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                     obstacle.GetComponent<Rigidbody>().isKinematic = true;
-                    obstacle.position = new Vector3(wallx, wally, wallz);
+                    obstacle.localPosition = new Vector3(wallx, wally, wallz);
 
                     ObstacleList.Add(obstacle);
                 }
@@ -102,7 +100,7 @@ public class TreadmillScript : MonoBehaviour
                 var obstacle = Instantiate(_cubePrefabs[nrPrefab]);
                 obstacle.AddComponent<Rigidbody>().GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 obstacle.GetComponent<Rigidbody>().isKinematic = true;
-                obstacle.position = new Vector3(stepx, stepy, stepz);
+                obstacle.localPosition = new Vector3(stepx, stepy, stepz);
                 ObstacleList.Add(obstacle);
             }//cylinder creation
             else
@@ -110,14 +108,14 @@ public class TreadmillScript : MonoBehaviour
                 var obstacle = Instantiate(_cubePrefabs[nrPrefab]);
                 obstacle.AddComponent<Rigidbody>().GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
                 obstacle.GetComponent<Rigidbody>().isKinematic = true;
-                obstacle.position = new Vector3(cylinderx, cylindery, cylinderz);
+                obstacle.localPosition = new Vector3(cylinderx, cylindery, cylinderz);
                 CylinderList.Add(obstacle); 
             }
             //plane creation
             if (nrPrefab != 2)
             {
                 var plane = Instantiate(_planePrefab);
-                plane.position = new Vector3(planex, planey, planez);
+                plane.localPosition = new Vector3(planex, planey, planez);
                 PlaneList.Add(plane);
                 
             }
@@ -134,15 +132,15 @@ public class TreadmillScript : MonoBehaviour
         if (timer > stop)
             speed = 1.0f;
         _spawnTime = 3.0f / speed;
-        var globalx = transform.position.x;
-        var globaly = transform.position.y;
-        var globalz = transform.position.z;
+        var globalx = transform.localPosition.x;
+        var globaly = transform.localPosition.y;
+        var globalz = transform.localPosition.z;
         for (int i = 0;i < ObstacleList.Count;i++)
         {
             //ObstacleList[i].position = Vector3.MoveTowards(ObstacleList[i].position, new Vector3(-20.0f, -5.0f, ObstacleList[i].position.z), _speed);
-            float z = ObstacleList[i].position.z;
+            float z = ObstacleList[i].localPosition.z;
             ObstacleList[i].Translate(-4f * Time.deltaTime * speed, -1.065f * Time.deltaTime * speed, 0);
-            if (ObstacleList[i].position.x <= -20.0f + globalx)
+            if (ObstacleList[i].localPosition.x <= -20.0f + globalx)
             {
                 Destroy(ObstacleList[i].gameObject);
                 ObstacleList.Remove(ObstacleList[i]);
@@ -154,7 +152,7 @@ public class TreadmillScript : MonoBehaviour
            PlaneList[i].Translate(-4f * Time.deltaTime * speed, -1.065f * Time.deltaTime * speed, 0);
             PlaneList[i].Rotate(0f, 0f, 15f, Space.Self);
 
-            if (PlaneList[i].position.x <= -20.0f + globalx)
+            if (PlaneList[i].localPosition.x <= -20.0f + globalx)
             {
                 Destroy(PlaneList[i].gameObject);
                 PlaneList.Remove(PlaneList[i]);
@@ -166,7 +164,7 @@ public class TreadmillScript : MonoBehaviour
             CylinderList[i].Translate(-4f * Time.deltaTime * speed, -1.065f * Time.deltaTime * speed, 0);
             CylinderList[i].Rotate(0f, 0f, 105f, Space.Self);
 
-            if (CylinderList[i].position.x <= -20.0f + globalx)
+            if (CylinderList[i].localPosition.x <= -20.0f + globalx)
             {
                 Destroy(CylinderList[i].gameObject);
                 CylinderList.Remove(CylinderList[i]);
