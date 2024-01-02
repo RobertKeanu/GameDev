@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerObj
   - GroundTag
+  - Enemy
+  - BalancingPlatform
   layers:
   - Default
   - TransparentFX
