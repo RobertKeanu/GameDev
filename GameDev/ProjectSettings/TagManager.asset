@@ -8,6 +8,7 @@ TagManager:
   - GroundTag
   - Enemy
   - BalancingPlatform
+  - Destroy
   layers:
   - Default
   - TransparentFX
