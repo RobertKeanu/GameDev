@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - BalancingPlatform
   - Destroy
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

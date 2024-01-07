@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameRespawn : MonoBehaviour
@@ -26,6 +27,11 @@ public class GameRespawn : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             KillFunction();
+        }
+        else if (other.CompareTag("SpawnPoint"))
+        {
+            lastCheckpoint = transform.position;
+            Destroy(other.gameObject);
         }
     }
 
