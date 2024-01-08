@@ -12,7 +12,6 @@ public class BulltScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * _speed;
-        Destroy(gameObject, 4f);
     }
 
     //Trebuie modificat in checkpoint!!!
@@ -21,6 +20,13 @@ public class BulltScript : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             GameObject.FindWithTag("Player").transform.position = new Vector3(258.59f, 50.15f, 290.76f);
+            Destroy(gameObject);
+        }
+        if(other.gameObject.name == "Door")
+            Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject,3f);
         }
     }
 }
