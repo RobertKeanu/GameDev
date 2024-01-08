@@ -35,7 +35,7 @@ public class GameRespawn : MonoBehaviour
         }
     }
 
-    void KillFunction()
+    public void KillFunction()
     {
         transform.position = lastCheckpoint;
     }
