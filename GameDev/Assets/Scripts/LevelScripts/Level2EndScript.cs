@@ -10,6 +10,7 @@ public class Level2EndScript : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
+            PlayerPrefs.SetInt("Level3Unlock", 1);
             SceneManager.LoadScene("Level3");
         }
     }
