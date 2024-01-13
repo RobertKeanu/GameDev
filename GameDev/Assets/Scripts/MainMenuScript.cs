@@ -9,7 +9,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private Slider volumeSlider = null;
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 

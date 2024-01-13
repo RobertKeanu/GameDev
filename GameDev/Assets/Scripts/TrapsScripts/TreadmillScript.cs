@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using Random = UnityEngine.Random;
 using Unity.VisualScripting;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering;
-using UnityEditor.ShaderGraph.Internal;
 
 public class TreadmillScript : MonoBehaviour
 {

@@ -7,6 +7,7 @@ public class Level1EndScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("Level2Unlock", 1);
             SceneManager.LoadScene("Level 2");
         }
     }

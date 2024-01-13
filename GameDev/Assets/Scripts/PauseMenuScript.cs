@@ -38,7 +38,7 @@ public class PauseMenuScript : MonoBehaviour
                 break;
             case "Level 1":
                 SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 1));
-                PlayerPrefs.SetInt("Leve1Saved", 1);
+                PlayerPrefs.SetInt("Level1Saved", 1);
                 break;
             case "Level 2":
                 SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 2));
@@ -63,7 +63,7 @@ public class PauseMenuScript : MonoBehaviour
                 PlayerPrefs.SetInt("TutorialSaved", 0);
                 break;
             case "Level 1":
-                PlayerPrefs.SetInt("Leve1Saved", 0);
+                PlayerPrefs.SetInt("Level1Saved", 0);
                 break;
             case "Level 2":
                 PlayerPrefs.SetInt("Level2Saved", 0);
@@ -79,6 +79,7 @@ public class PauseMenuScript : MonoBehaviour
     public void PauseGame()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         paused = true;
