@@ -24,7 +24,6 @@ public class LoadScript : MonoBehaviour
                     {
                         var position = SaveSystem.LoadPlayer().tutorialPosition;
                         player.transform.position = position;
-                        Debug.Log(player.transform.position);
                     }
                     break;
                 }
@@ -35,7 +34,6 @@ public class LoadScript : MonoBehaviour
                     {
                         var position = SaveSystem.LoadPlayer().level1Position;
                         player.transform.position = position;
-                        Debug.Log(player.transform.position);
                     }
                     break;
                 }
@@ -45,7 +43,6 @@ public class LoadScript : MonoBehaviour
                     {
                         var position = SaveSystem.LoadPlayer().level2Position;
                         player.transform.position = position;
-                        Debug.Log(player.transform.position);
                     }
                     break;
                 }
@@ -55,7 +52,6 @@ public class LoadScript : MonoBehaviour
                     {
                         var position = SaveSystem.LoadPlayer().level3Position;
                         player.transform.position = position;
-                        Debug.Log(player.transform.position);
                     }
                     break;
                 }
