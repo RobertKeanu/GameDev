@@ -9,7 +9,6 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private Slider volumeSlider = null;
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
@@ -42,9 +41,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void Awake()
     {
-        //PlayerPrefs.SetInt("Level3Unlock", 0);
-        //PlayerPrefs.SetInt("Level2Unlock", 0);
-        //PlayerPrefs.SetInt("Level1Unlock", 0);
         var children = GetComponentInChildren<Transform>();
         foreach (Transform child in children)
         {
