@@ -131,7 +131,10 @@ public class MovementScript : MonoBehaviour
     {
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
         //We reset the velocity for y axis so that the jump is consistent and always jump the same height
-        _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if(transform.parent)
+            _rigidbody.AddForce(transform.up * jumpForce + transform.parent.GetComponent<Rigidbody>().velocity, ForceMode.Impulse);
+        else
+            _rigidbody.AddForce(transform.up * jumpForce , ForceMode.Impulse);
         //We apply the force in the upward direction using the forcemode.impulse so that the force is applied only once
     }
 

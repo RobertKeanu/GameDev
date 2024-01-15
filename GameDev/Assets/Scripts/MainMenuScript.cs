@@ -31,6 +31,8 @@ public class MainMenuScript : MonoBehaviour
 
     public void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         if (name == "Settings Menu")
         {
             volumeValue.text = PlayerPrefs.GetFloat("Volume").ToString("0.00");
