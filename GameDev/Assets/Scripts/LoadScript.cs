@@ -29,7 +29,6 @@ public class LoadScript : MonoBehaviour
                 }
             case "Level 1":
                 {
-                    Debug.Log(SceneManager.GetActiveScene().name);
                     if (PlayerPrefs.GetInt("Level1Saved") == 1)
                     {
                         var position = SaveSystem.LoadPlayer().level1Position;
@@ -57,7 +56,7 @@ public class LoadScript : MonoBehaviour
                 }
         }
 
-        GameObject.Find("Loading Screen").SetActive(false);
+        screen.SetActive(false);
 
     }
 

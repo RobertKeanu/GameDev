@@ -31,6 +31,10 @@ public class MainMenuScript : MonoBehaviour
 
     public void Start()
     {
+        //PlayerPrefs.SetInt("Level1Unlock", 0);
+        //PlayerPrefs.SetInt("Level2Unlock", 0);
+        //PlayerPrefs.SetInt("Level3Unlock", 0);
+
         if (name == "Settings Menu")
         {
             volumeValue.text = PlayerPrefs.GetFloat("Volume").ToString("0.00");
