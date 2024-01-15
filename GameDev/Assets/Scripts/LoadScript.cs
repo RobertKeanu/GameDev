@@ -56,7 +56,7 @@ public class LoadScript : MonoBehaviour
                 }
         }
 
-        GameObject.Find("Loading Screen").SetActive(false);
+        screen.SetActive(false);
 
     }
 
