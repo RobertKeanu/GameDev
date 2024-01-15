@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StickyPlatform : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.name == "Player")
         {
