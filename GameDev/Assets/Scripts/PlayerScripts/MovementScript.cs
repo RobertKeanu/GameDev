@@ -28,14 +28,7 @@ public class MovementScript : MonoBehaviour
     private BoxCollider _boxCollider;
     private Vector3 _moveDirection;
     private Rigidbody _rigidbody;
-    private MovementState _state;
 
-    public enum MovementState
-    {
-        Walking,
-        Running,
-        Air
-    }
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -74,17 +67,11 @@ public class MovementScript : MonoBehaviour
     {
         if (_grounded && Input.GetKey(sprintKey))
         {
-            _state = MovementState.Running;
             _speed = sprintSpeed;
         }
         else if (_grounded)
         {
-            _state = MovementState.Walking;
             _speed = walkSpeed;
-        }
-        else
-        {
-            _state = MovementState.Air;
         }
     }
     private void PlInput()
