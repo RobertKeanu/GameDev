@@ -29,26 +29,26 @@ public class PauseMenuScript : MonoBehaviour
 
     public void MainMenu()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        GameObject player = GameObject.Find("Player");
-        switch (scene.name) {
-            case "TestMap":
-                SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 0));
-                PlayerPrefs.SetInt("TutorialSaved", 1);
-                break;
-            case "Level 1":
-                SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 1));
-                PlayerPrefs.SetInt("Level1Saved", 1);
-                break;
-            case "Level 2":
-                SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 2));
-                PlayerPrefs.SetInt("Level2Saved", 1);
-                break;
-            case "Level3":
-                SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 3));
-                PlayerPrefs.SetInt("Level3Saved", 1);
-                break;
-        }
+        //Scene scene = SceneManager.GetActiveScene();
+        //GameObject player = GameObject.Find("Player");
+        //switch (scene.name) {
+        //    case "TestMap":
+        //        SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 0));
+        //        PlayerPrefs.SetInt("TutorialSaved", 1);
+        //        break;
+        //    case "Level 1":
+        //        SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 1));
+        //        PlayerPrefs.SetInt("Level1Saved", 1);
+        //        break;
+        //    case "Level 2":
+        //        SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 2));
+        //        PlayerPrefs.SetInt("Level2Saved", 1);
+        //        break;
+        //    case "Level3":
+        //        SaveSystem.SavePlayerPosition(new PlayerData(player.transform.position, 3));
+        //        PlayerPrefs.SetInt("Level3Saved", 1);
+        //        break;
+        //}
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
